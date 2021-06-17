@@ -76,7 +76,7 @@
       <label for="city">City</label>
       <input type="text" class="form-control" id="City" placeholder="Enter City" name="City">
     </div>
-    
+
         <div class="form-group">
             <label for="pincode">pincode:</label>
             <input type="text" class="form-control" id="pincode" placeholder="Enter pincode" name="pincode">
@@ -89,14 +89,42 @@
             <label for="college">college:</label>
             <input type="text" class="form-control" id="college" placeholder="Enter college" name="college">
           </div>
-        
+
           <div class="form-group">
             <label for="board">board</label>
             <input type="text" class="form-control" id="board" placeholder="Enter board" name="board">
           </div>
           <div class="form-group">
+            <label for="branch">Course</label>
+            <select type="text" class="form-control" id="branch" placeholder="Enter branch" name="course">
+                @foreach ($course as $item )
+                <option value="{{$item->sn_course}}" style="color:black">{{$item->sn_course}}.({{$item->fn_course}})</option>
+                @endforeach
+
+            </select>
+
+          </div>
+          <div class="form-group">
             <label for="branch">Branch</label>
-            <input type="text" class="form-control" id="branch" placeholder="Enter branch" name="branch">
+            <select type="text" class="form-control" id="branch" placeholder="Enter branch" name="branch">
+                @foreach ($branch as $item )
+                <option value="{{$item->sbranch_name}}" style="color:black">{{$item->fbranch_name}}.({{$item->sbranch_name}})</option>
+                @endforeach
+
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="branch">Year</label>
+            <select type="text" class="form-control" id="year"  name="year">
+
+                <option value="1">1 Year</option>
+                <option value="2">2 Year</option>
+                <option value="3">3 Year</option>
+                <option value="4">4 Year</option>
+
+            </select>
+
           </div>
           <div class="form-group">
             <label for="standard">Standard</label>

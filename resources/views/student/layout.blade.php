@@ -10,19 +10,19 @@
   <title>@yield('page_title')</title>
 
   <!-- Favicons -->
-  <link href="student/img/icon.jpg" rel="icon">
-  <link href="student/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{asset('student/img/icon.jpg')}}" rel="icon">
+  <link href="{{asset('student/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
-  <link href="student/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{asset('student/lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <!--external css-->
-  <link href="student/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="student/css/zabuto_calendar.css">
-  <link rel="stylesheet" type="text/css" href="student/lib/gritter/css/jquery.gritter.css" />
+  <link href="{{asset('student/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{asset('student/css/zabuto_calendar.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('student/lib/gritter/css/jquery.gritter.css')}}" />
   <!-- Custom styles for this template -->
-  <link href="student/css/style.css" rel="stylesheet">
-  <link href="student/css/style-responsive.css" rel="stylesheet">
-  <script src="student/lib/chart-master/Chart.js"></script>
+  <link href="{{asset('student/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('student/css/style-responsive.css')}}" rel="stylesheet">
+  <script src="{{asset('student/lib/chart-master/Chart.js')}}"></script>
 
   <!-- =======================================================
     Template Name: TechVirt
@@ -232,7 +232,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="/logout">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -244,10 +244,14 @@
     <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
+          @php
 
+              $user=Auth::user();
+
+          @endphp
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="{{url('profile')}}"><img src="student/img/pic.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">@yield('student_name')</h5>
+          <p class="centered"><a href="{{url('profile')}}"><img src="{{asset('user_image')}}/{{$user->image_name}}" class="img-circle" width="80"></a></p>
+          <h5 class="centered">{{$user->name}}</h5>
           <li class="">
             <a class="@yield('dashboard_select')" href="{{url('studentdeshboard')}}">
               <i class="fa fa-dashboard"></i>
@@ -276,6 +280,12 @@
             <a  class="@yield('st_select')" href="{{url('subject-teacher')}}">
               <i class="fa fa-tasks"></i>
               <span>Subject Teachers</span>
+              </a>
+          </li>
+          <li>
+            <a  class="@yield('st_select')" href="{{url('motivationalquote')}}">
+              <i class="fa fa-tasks"></i>
+              <span>Motivational Quotes</span>
               </a>
           </li>
           <li>
@@ -308,16 +318,16 @@
     <section id="main-content">
       <section class="wrapper">
         <div class="row">
-         
+
              @section('container')
                         @show
-            
-          
+
+
           <!-- /col-lg-9 END SECTION MIDDLE -->
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
-          
+
           <!-- /col-lg-3 -->
         </div>
         <!-- /row -->
@@ -347,20 +357,20 @@
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="student/lib/jquery/jquery.min.js"></script>
+  <script src="{{asset('student/lib/jquery/jquery.min.js')}}"></script>
 
-  <script src="student/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="student/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="student/lib/jquery.scrollTo.min.js"></script>
-  <script src="student/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="student/lib/jquery.sparkline.js"></script>
+  <script src="{{asset('student/lib/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script class="include" type="text/javascript" src="{{asset('student/lib/jquery.dcjqaccordion.2.7.js')}}"></script>
+  <script src="{{asset('student/lib/jquery.scrollTo.min.js')}}"></script>
+  <script src="{{asset('student/lib/jquery.nicescroll.js')}}" type="text/javascript"></script>
+  <script src="{{asset('student/lib/jquery.sparkline.js')}}"></script>
   <!--common script for all pages-->
-  <script src="student/lib/common-scripts.js"></script>
-  <script type="text/javascript" src="student/lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="student/lib/gritter-conf.js"></script>
+  <script src="{{asset('student/lib/common-scripts.js')}}"></script>
+  <script type="text/javascript" src="{{asset('student/lib/gritter/js/jquery.gritter.js')}}"></script>
+  <script type="text/javascript" src="{{asset('student/lib/gritter-conf.js')}}"></script>
   <!--script for this page-->
-  <script src="student/lib/sparkline-chart.js"></script>
-  <script src="student/lib/zabuto_calendar.js"></script>
+  <script src="{{asset('student/lib/sparkline-chart.js')}}"></script>
+  <script src="{{asset('student/lib/zabuto_calendar.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectNotesTable extends Migration
+class CreateAdminCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateSubjectNotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_notes', function (Blueprint $table) {
+        Schema::create('admin_courses', function (Blueprint $table) {
             $table->id();
-            $table->string('subject_name');
-            $table->string('branch');
-            $table->('semester');
-            $table->('notes');
-
+            $table->string('fn_course');
+            $table->string('sn_course');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateSubjectNotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_notes');
+        Schema::dropIfExists('admin_courses');
     }
 }

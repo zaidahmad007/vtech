@@ -3,7 +3,11 @@
 
 @section('container')
 
+@php
 
+$user=Auth::user();
+
+@endphp
           <div class="col-lg-12">
             <div class="row content-panel">
               <div class="col-md-4 profile-text mt mb centered">
@@ -18,7 +22,7 @@
               </div>
               <!-- /col-md-4 -->
               <div class="col-md-4 profile-text">
-                <h3>Zaid</h3>
+                <h3>{{$user->name}}</h3>
                 <h6>Student</h6>
                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
                 <br>
@@ -27,36 +31,50 @@
               <!-- /col-md-4 -->
               <div class="col-md-4 centered">
                 <div class="profile-pic">
-                  <p><img src="student/img/pic.jpg" class="img-circle"></p>
-                  <p>
-                    <button class="btn btn-theme" data-toggle="modal" data-target="#myModal"> <CENTER>	Change Picture </CENTER></button>
-                                  <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel">Change Picture</h4>
-                    </div>
-                    <div class="modal-body">
-                     <form role="form" class="form-horizontal">
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label"> </label>
-                            <div class="col-lg-6">
-                              <input type="file" id="exampleInputFile" class="file-pos">
-                            </div>
-                          </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- End Modal -->
-                    
-                  </p>
+                  <p><img src="{{asset('user_image')}}/{{$user->image_name}}" class="img-circle"></p>
+
+                    <button  type="button" class="btn btn-theme" data-toggle="modal" data-target="#modelId"> 	Change Picture </button>
+                                <!-- Button trigger modal -->
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                                <div class="modal-header">
+                                                        <h5 class="modal-title">CHANGE PROFILE</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                    </div>
+                                            <div class="modal-body">
+                                                <div class="container-fluid">
+                                                   <form action="changeprofile" method="POST" enctype="multipart/form-data">
+                                                       @csrf
+                                                       <input name="id" value="{{$user->id}}" hidden>
+                                                        <input type="file" name="profile">
+                                                       <input type="submit" class="btn btn-primary" value="Change Profile">
+                                                   </form>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $('#exampleModal').on('show.bs.modal', event => {
+                                        var button = $(event.relatedTarget);
+                                        var modal = $(this);
+                                        // Use above variables to manipulate the DOM
+
+                                    });
+                                </script>
+
+
                 </div>
               </div>
               <!-- /col-md-4 -->

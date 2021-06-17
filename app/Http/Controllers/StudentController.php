@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminBranch;
+use App\Models\AdminCourse;
 use App\Models\StudentDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +18,10 @@ class StudentController extends Controller
     }
     public function addstudentdetail()
     {
-        return view('student.addstudentdetail');
+        $course=AdminCourse::all();
+        $branch=AdminBranch::all();
+
+        return view('student.addstudentdetail')->with('course',$course)->with('branch',$branch);
     }
 
     public function studentdetail(Request $req)
@@ -30,8 +35,11 @@ class StudentController extends Controller
         $stu->college=$req->college;
         $stu->rid=$user->rid;
         $stu->branch=$req->branch;
+        $stu->course=$req->course;
         $stu->board=$req->board;
+        $stu->year=$req->year;
         $stu->standard=$req->standard;
+        $stu->user_id=$user->id;
         $stu->save();
         $users=User::where('rid',$user->rid)->first();
         $users->completeprofile="1";

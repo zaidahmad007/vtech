@@ -1,44 +1,90 @@
 @extends('student/layout')
-@section('page_title','Subject')
-@section('subject_select','active')
+@section('page_title','Profile')
+
 @section('container')
 
-<section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i>Subject</h3>
-        <div class="row mb">
-          <!-- page start-->
-          <div class="content-panel">
-            <div class="adv-table">
-              <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
-                <thead>
-                  <tr>
-                    <th>S No.</th>
-                    <th>Subject Name</th>
-                  
-                    <th class="hidden-phone">Branch</th>
-                    <th class="hidden-phone">Subject Code</th>
-                    <th class="hidden-phone">Subject Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($users as $user)
-    
-                  <tr class="gradeX">
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->subject_name }}</td>
-                    
-                    <td class="hidden-phone">{{ $user->branch }}</td>
-                    <td class="center hidden-phone">{{ $user->subject_code }}</td>
-                    <td class="center hidden-phone"><a href="student/{{$user->subject_notes}}" download=""> Download  </a>
-                  </tr>
-                  @endforeach                
-                </tbody>
-              </table>
+@php
+    $user=Auth::User()->id;
+@endphp
+
+
+<div class="container" style="margin-top: 50px">
+   <div class="row" style="display: flex;justify-content:center;align-items:center">
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-lg" style="background-color:gold;color:white;padding:19px;"data-toggle="modal" data-target="#modelId">
+  ADD YOUR SEMESTER SUBJECT
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <form action="addstudentsubject" method="post">
+                        @csrf
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <input value="{{$user}}" name="id" hidden>
+                    <input type="text" list="sub_list" name="subject" class="form-control">
+                    <datalist id="sub_list">
+                        @foreach ($sub as $item)
+                        <option value="{{$item->subject}}" />
+                            @endforeach
+
+                    </datalist>
+
+                </div>
             </div>
-          </div>
-          <!-- page end-->
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+            </form>
         </div>
-        <!-- /row -->
-      </section>
+    </div>
+</div>
+
+   </div></div>
+   <div class="container">
+<table class="table">
+    <h2>Your Semester Subject</h2>
+    <thead>
+        @foreach ($own as $item)
+
+
+        <tr>
+            <th>{{$item->subject_name}}</th>
+            <th>{{$item->subject_code}}</th>
+            <form method="POST" action="studentsubnotes/{{$item->subject_name}}">
+                @csrf
+                <input value="{{$item->subject_name}}" name="subject" hidden>
+            <th><button class="btn btn-primary">NOTES</button></th>
+            </form>
+
+        </tr>
+        @endforeach
+    </thead>
+
+</table>
+
+
+</div>
+
+
+<script>
+    $('#exampleModal').on('show.bs.modal', event => {
+        var button = $(event.relatedTarget);
+        var modal = $(this);
+        // Use above variables to manipulate the DOM
+
+    });
+</script>
+
 
 @endsection

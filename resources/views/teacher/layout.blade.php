@@ -10,19 +10,19 @@
   <title>@yield('page_title')</title>
 
   <!-- Favicons -->
-  <link href="student/img/icon.jpg" rel="icon">
-  <link href="student/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{asset('student/img/icon.jpg')}}" rel="icon">
+  <link href="{{asset('student/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
-  <link href="student/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{asset('student/lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <!--external css-->
-  <link href="student/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="student/css/zabuto_calendar.css">
-  <link rel="stylesheet" type="text/css" href="student/lib/gritter/css/jquery.gritter.css" />
+  <link href="{{asset('student/lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{asset('student/css/zabuto_calendar.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('student/lib/gritter/css/jquery.gritter.css')}}" />
   <!-- Custom styles for this template -->
-  <link href="student/css/style.css" rel="stylesheet">
-  <link href="student/css/style-responsive.css" rel="stylesheet">
-  <script src="student/lib/chart-master/Chart.js"></script>
+  <link href="{{asset('student/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('student/css/style-responsive.css')}}" rel="stylesheet">
+  <script src="{{asset('student/lib/chart-master/Chart.js')}}"></script>
 
   <!-- =======================================================
     Template Name: TechVirt
@@ -38,6 +38,9 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
+    @php
+        $user=Auth::user();
+    @endphp
     <header class="header black-bg">
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
@@ -130,7 +133,7 @@
               </li>
               <li>
                 <a href="index.html#">
-                  <span class="photo"><img alt="avatar" src="img/ui-zac.jpg"></span>
+                  <span class="photo"><img alt="avatar" src="{{asset('img/ui-zac.jpg')}}"></span>
                   <span class="subject">
                   <span class="from">Zac Snider</span>
                   <span class="time">Just now</span>
@@ -142,7 +145,7 @@
               </li>
               <li>
                 <a href="index.html#">
-                  <span class="photo"><img alt="avatar" src="img/ui-divya.jpg"></span>
+                  <span class="photo"><img alt="avatar" src="{{asset('img/ui-divya.jpg')}}"></span>
                   <span class="subject">
                   <span class="from">Divya Manian</span>
                   <span class="time">40 mins.</span>
@@ -154,7 +157,7 @@
               </li>
               <li>
                 <a href="index.html#">
-                  <span class="photo"><img alt="avatar" src="img/ui-danro.jpg"></span>
+                  <span class="photo"><img alt="avatar" src="{{asset('img/ui-danro.jpg')}}"></span>
                   <span class="subject">
                   <span class="from">Dan Rogers</span>
                   <span class="time">2 hrs.</span>
@@ -232,7 +235,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="logout">Logout</a></li>
+          <li><a class="logout" href="/logout">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -246,14 +249,28 @@
         <!-- sidebar menu start-->
 
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="{{url('teacher_profile')}}"><img src="student/img/pic.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Teacher</h5>
+          <p class="centered"><a href="{{url('teacher_profile')}}"><img src="{{asset('user_image')}}/{{$user->image_name}}" class="img-circle" width="80"></a></p>
+          <h5 class="centered">Teacher {{ $user->name}}</h5>
           <li class="">
-            <a class="@yield('dashboard_select')" href="{{url('studentdeshboard')}}">
+            <a class="@yield('dashboard_select')" href="{{url('teacherdashboard')}}">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
               </a>
           </li>
+
+          <li >
+            <a class="@yield('attendance_select')" href="{{url('TeacherAttendance')}}">
+              <i class="fa fa-book"></i>
+              <span>Attendance</span>
+              </a>
+          </li>
+          <li >
+            <a class="@yield('attendance_select')" href="{{url('TeacherAddNotes')}}">
+              <i class="fa fa-book"></i>
+              <span>Add Notes</span>
+              </a>
+          </li>
+
 
 
 
@@ -308,20 +325,20 @@
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="student/lib/jquery/jquery.min.js"></script>
+  <script src="{{asset('student/lib/jquery/jquery.min.js')}}"></script>
 
-  <script src="student/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="student/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="student/lib/jquery.scrollTo.min.js"></script>
-  <script src="student/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="student/lib/jquery.sparkline.js"></script>
+  <script src="{{asset('student/lib/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script class="include" type="text/javascript" src="{{asset('student/lib/jquery.dcjqaccordion.2.7.js')}}"></script>
+  <script src="{{asset('student/lib/jquery.scrollTo.min.js')}}"></script>
+  <script src="{{asset('student/lib/jquery.nicescroll.js')}}" type="text/javascript"></script>
+  <script src="{{asset('student/lib/jquery.sparkline.js')}}"></script>
   <!--common script for all pages-->
-  <script src="student/lib/common-scripts.js"></script>
-  <script type="text/javascript" src="student/lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="student/lib/gritter-conf.js"></script>
+  <script src="{{asset('student/lib/common-scripts.js')}}"></script>
+  <script type="text/javascript" src="{{asset('student/lib/gritter/js/jquery.gritter.js')}}"></script>
+  <script type="text/javascript" src="{{asset('student/lib/gritter-conf.js')}}"></script>
   <!--script for this page-->
-  <script src="student/lib/sparkline-chart.js"></script>
-  <script src="student/lib/zabuto_calendar.js"></script>
+  <script src="{{asset('student/lib/sparkline-chart.js')}}"></script>
+  <script src="{{asset('student/lib/zabuto_calendar.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({

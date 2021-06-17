@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
@@ -8,7 +9,11 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\Motivationalquote;
+use App\Http\Controllers\SubjectNotesController;
 use App\Http\Controllers\TeacherProfile;
+use App\Models\StudentProfile;
+use App\Models\TeacherSubject;
 use GuzzleHttp\Middleware;
 
 /*
@@ -35,15 +40,26 @@ Route::middleware(['auth', 'detail','teacher'])->group(function () {
    /// Route::get('/studentdeshboard',[StudentController::class,'studentdeshboard']);
     Route::get('/teacherdashboard',[TeacherController::class,'teacherdashboard'])->name('teacherdashboard');
     Route::get('/teacher_profile',[TeacherProfile::class,'profile']);
+    Route::get('/TeacherAttendance',[AttendanceController::class,'TeacherAttendance'])->name('TeacherAttendance');
+    Route::post('/attendanceAction',[AttendanceController::class,'attendanceAction'])->name('attendanceAction');
+    Route::post('/teacherchangeprofile',[TeacherProfile::class,'teacherchangeprofile']);
+    Route::get('TeacherAddNotes',[TeacherController::class,'TeacherAddNotes']);
+    Route::post('addteachersubject',[TeacherController::class,'addteachersubject']);
+    Route::any('subnotes/{name}',[SubjectNotesController::class,'index'])->name('subnotes');
+    Route::any('uploadnotes',[SubjectNotesController::class,'store'])->name('uploadnotes');
 });
 Route::middleware(['auth', 'detail','student'])->group(function () {
     Route::get('/studentdeshboard',[StudentController::class,'studentdeshboard']);
     Route::get('/teacherdeshboard',[TeacherController::class,'teacherdeshboard']);
     Route::get('/profile',[StudentProfileController::class,'profile']);
     Route::get('/subject',[SubjectController::class,'subject']);
-
+    Route::post('/SendAttendance',[AttendanceController::class,'SendAttendance'])->name('SendAttendance');
     Route::get('/timetable',[TimetableController::class,'timetable']);
-    Route::get('/attendance',[AttendanceController::class,'attendance']);
+    Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
+    Route::post('/changeprofile',[StudentProfileController::class,'changeprofile']);
+    Route::post('addstudentsubject',[SubjectController::class,'addstudentsubject']);
+    Route::any('studentsubnotes/{name}',[SubjectController::class,'studentsubnotes'])->name('studentsubnotes');
+    Route::get('motivationalquote',[Motivationalquote::class,'index']);
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -53,5 +69,14 @@ Route::post('teacherdetail',[TeacherController::class,'teacherdetail']);
 Route::post('studentdetail',[StudentController::class,'studentdetail']);
 Route::get('logout',[LoginController::class,'logout']);
 Route::get('admin',[LoginController::class,'admin']);
+Route::get('Adminsubject',[AdminController::class,'Adminsubject']);
+Route::post('addsubject',[AdminController::class,'addsubject']);
+Route::post('del',[AdminController::class,'delsubject']);
+Route::post('addcourseAdmin',[AdminController::class,'addcourseAdmin']);
+Route::get('Admincourse',[AdminController::class,'Admincourse']);
+Route::get('Adminbranch',[AdminController::class,'Adminbranch']);
+Route::post('addbranchAdmin',[AdminController::class,'addbranchAdmin']);
+Route::get('delbranch/{id}',[AdminController::class,'delbranch']);
+
 
 });

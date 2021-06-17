@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Mail;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,14 +29,20 @@ class LoginController extends Controller
         $userget->rid="TECH"."2021".$userget->id;
         $userget->update();
         Auth::login($userget,true);
+        $this->to=$request->email;
+        $data = array("registerId"=> $userget->rid);
+
+
+
         if($userget->type=="teacher")
         {
-            return redirect('teacherdashboard');
+            $user=Auth::user();
+            return redirect('teacherdashboard')->with('user',$user);
         }
         elseif($userget->type=="student")
         {
-
-            return redirect('studentdeshboard',compact($user));
+            $user=Auth::user();
+            return redirect('studentdeshboard')->with('user',$user);
         }
         else{
             return redirect('admin');
@@ -57,16 +64,18 @@ class LoginController extends Controller
 
             if($user->password==$req->psw){
                 Auth::login($user,true);
+
                 if($user->type=="teacher")
                 {
 
-
-                    return redirect('teacherdashboard');
+                    $user=Auth::user();
+                    return redirect('teacherdashboard')->with('user',$user);
                 }
                 elseif($user->type=="student")
                 {
                    // $users = DB::table('users')->get();
-                    return redirect('studentdeshboard');
+                   $user=Auth::user();
+                    return redirect('studentdeshboard')->with('user',$user);
                 }
                 else{
                     return redirect('admin');

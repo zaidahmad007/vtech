@@ -3,7 +3,11 @@
 
 @section('container')
 
+@php
 
+$user=Auth::user();
+
+@endphp
           <div class="col-lg-12">
             <div class="row content-panel">
               <div class="col-md-4 profile-text mt mb centered">
@@ -27,7 +31,7 @@
               <!-- /col-md-4 -->
               <div class="col-md-4 centered">
                 <div class="profile-pic">
-                  <p><img src="student/img/pic.jpg" class="img-circle"></p>
+                  <p><img src="{{asset('user_image')}}/{{$user->image_name}}" class="img-circle"></p>
                   <p>
                     <button class="btn btn-theme" data-toggle="modal" data-target="#myModal"> <CENTER>	Change Picture </CENTER></button>
                                   <!-- Modal -->
@@ -39,18 +43,17 @@
                       <h4 class="modal-title" id="myModalLabel">Change Picture</h4>
                     </div>
                     <div class="modal-body">
-                     <form role="form" class="form-horizontal">
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label"> </label>
-                            <div class="col-lg-6">
-                              <input type="file" id="exampleInputFile" class="file-pos">
-                            </div>
-                          </div>
+                        <div class="container-fluid">
+                           <form action="teacherchangeprofile" method="POST" enctype="multipart/form-data">
+                               @csrf
+                               <input name="id" value="{{$user->id}}" hidden >
+                                <input type="file" name="profile">
+                               <input type="submit" class="btn btn-primary" value="Change Profile">
+                           </form>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
+
                   </div>
                 </div>
               </div>
