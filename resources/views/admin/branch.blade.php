@@ -1,8 +1,8 @@
 @extends('admin/layout')
-@section('page_title','Dashboard')
+@section('page_title','Branch')
 
 @section('student_name','Student')
-@section('dashboard_select','active')
+@section('branch_select','active')
 @section('container')
 
 

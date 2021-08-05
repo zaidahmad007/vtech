@@ -84,16 +84,16 @@
                                   <input type="text" class="form-control" id="hq" placeholder="Enter Hightest Qualification:" name="hq">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Specialization">Specialization</label>
-                                    <input type="text" class="form-control" id="Specialization" placeholder="Enter Specialization" name="Specialization">
+                                    <label for="Specialization">Specialization( in subject)</label>
+                                    <input type="text" class="form-control" id="Specialization" placeholder="Enter Subject Specialization" name="Specialization">
                                   </div>
                                   <div class="form-group">
-                                    <label for="Experience">Experience</label>
+                                    <label for="Experience">Experience(in years)</label>
                                     <input type="text" class="form-control" id="Experience" placeholder="Enter Experience" name="Experience">
                                   </div>
                                   <div class="form-group">
                                     <label for="board">Board</label>
-                                    <input type="text" class="form-control" id="board" placeholder="Enter Eboard" name="board">
+                                    <input type="text" class="form-control" id="board" placeholder="Enter Board O" name="board">
                                   </div>
                                 <div class="checkbox">
                                   <label><input type="checkbox" name="remember"> Remember me</label>

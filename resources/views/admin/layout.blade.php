@@ -248,7 +248,7 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <h5 class="centered">@yield('student_name')</h5>
           <li class="">
-            <a class="@yield('dashboard_select')" href="{{url('studentdeshboard')}}">
+            <a class="@yield('dashboard_select')" href="{{url('admin')}}">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
               </a>
@@ -266,7 +266,7 @@
               </a>
           </li>
           <li >
-            <a class="@yield('subject_select')" href="{{url('Adminbranch')}}">
+            <a class="@yield('branch_select')" href="{{url('Adminbranch')}}">
               <i class="fa fa-desktop"></i>
               <span>Add Branch</span>
               </a>

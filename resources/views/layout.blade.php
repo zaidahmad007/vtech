@@ -11,7 +11,7 @@
 <link href="{{asset('plugins/revolution/css/layers.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
 <link href="{{asset('plugins/revolution/css/navigation.css')}}" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
 <link href="{{asset('css/style.css')}}" rel="stylesheet">
-<link rel="shortcut icon" href="{{asset('images/favicon.png')}}" type="image/x-icon">
+<link rel="shortcut icon" href="{{asset('images/favicon.jpg')}}" type="image/x-icon">
 <link rel="icon" href="{{asset('student/images/icon.jpg')}}" type="image/x-icon">
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

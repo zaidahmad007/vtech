@@ -7,6 +7,7 @@ use App\Models\Studentsubject;
 use App\Models\Subject;
 use App\Models\Notes;
 use App\Models\User;
+use App\Models\StudentDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,26 +33,29 @@ class SubjectController extends Controller
     {
         $sub=AdminSubject::where('subject',$req->subject)->first();
         $code= $sub->subject_code;
+        $check=Studentsubject::where([['user_id',$req->id],['subject_name',$req->subject]])->first();
+        if($check)
+        {
+            return redirect()->back()->with('msg','Already Added');
+        }
         $add=new Studentsubject();
         $add->user_id=$req->id;
         $add->subject_name=$req->subject;
         $add->subject_code=$code;
         $add->save();
-        return redirect()->back();
+        return redirect()->back()->with('msg','Addded');
 
     }
-    public function studentsubnotes(Request $req)
-    {   $id=Auth::user()->id;
-        $banch= User::find($id)->detail->branch;
-
+   public function studentsubnotes(Request $req)
+    {
+     $id=Auth::user()->id;
+        $branch= StudentDetail::select('branch')->where('user_id',$id)->first()->branch;
         $name=$req->name;
-        $notes=Notes::where('subject',$req->name)->where('branch',$banch)->get();
+        $notes=Notes::where('subject',$req->name)->where('branch',$branch)->get();
         $req->session()->put('subject', $name);
         return view('student.subject_notes')->with('note',$notes)->with('name',$name);
 
-
-
-    }
+     }
     /*public function download(){
     $downloads=DB::table('subjects')->get();
   return view('student.subject', compact('downloads'));-->*/

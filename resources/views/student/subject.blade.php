@@ -9,6 +9,9 @@
 
 
 <div class="container" style="margin-top: 50px">
+    @if(Session::has('msg'))
+<p class="alert alert-info">{{ Session::get('msg') }}</p>
+@endif
    <div class="row" style="display: flex;justify-content:center;align-items:center">
 
 <!-- Button trigger modal -->
@@ -21,7 +24,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
                 <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
+                        <h5 class="modal-title">Add Subject
+                        </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -64,7 +68,7 @@
             <form method="POST" action="studentsubnotes/{{$item->subject_name}}">
                 @csrf
                 <input value="{{$item->subject_name}}" name="subject" hidden>
-            <th><button class="btn btn-primary">NOTES</button></th>
+            <th><button type="submit" class="btn btn-primary">NOTES</button></th>
             </form>
 
         </tr>

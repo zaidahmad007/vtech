@@ -8,7 +8,7 @@
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <title>@yield('page_title')</title>
-
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Favicons -->
   <link href="{{asset('student/img/icon.jpg')}}" rel="icon">
   <link href="{{asset('student/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
@@ -250,14 +250,20 @@
 
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="{{url('teacher_profile')}}"><img src="{{asset('user_image')}}/{{$user->image_name}}" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Teacher {{ $user->name}}</h5>
+          <h5 class="centered">{{ $user->name}}</h5>
+          <h5 class="centered">(Teacher)  </h5>
           <li class="">
             <a class="@yield('dashboard_select')" href="{{url('teacherdashboard')}}">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
               </a>
           </li>
-
+           <li >
+            <a class="@yield('chatroom_select')" href="{{route('allEvent')}}">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+              <span>All Event</span>
+              </a>
+          </li>
           <li >
             <a class="@yield('attendance_select')" href="{{url('TeacherAttendance')}}">
               <i class="fa fa-book"></i>
@@ -265,12 +271,24 @@
               </a>
           </li>
           <li >
-            <a class="@yield('attendance_select')" href="{{url('TeacherAddNotes')}}">
+            <a class="@yield('addnotes_select')" href="{{url('TeacherAddNotes')}}">
               <i class="fa fa-book"></i>
               <span>Add Notes</span>
               </a>
           </li>
+             <li >
+            <a class="@yield('chatroom_select')" href="{{route('addStudy')}}">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+              <span>Add Study Event</span>
+              </a>
+          </li>
 
+          <li >
+            <a class="@yield('chatroom_select')" href="{{url('chatroom')}}">
+              <i class="fa fa-comments-o"></i>
+              <span>Chat Room</span>
+              </a>
+          </li>
 
 
 
@@ -400,6 +418,10 @@
       var to = $("#" + id).data("to");
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
   </script>
 </body>
 

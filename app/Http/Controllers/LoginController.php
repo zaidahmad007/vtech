@@ -20,9 +20,17 @@ class LoginController extends Controller
         $user=new User();
         $user->name=$request->name;
         $user->email=$request->email;
+        if(strlen($request->mobile)<=9)
+        {
+            return redirect()->back()->with('msg','Enter Valid Mobile Number');
+        }
         $user->phone=$request->mobile;
         $user->rid=rand(100,999);
         $user->type=$request->type;
+        if(strlen($request->pwd)<=7)
+        {
+            return redirect()->back()->with('msg','password must contain at least 8 characters');
+        }
         $user->password=$request->pwd;
         $user->save();
         $userget=User::where("email",$request->email)->first();

@@ -77,16 +77,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Mobile:</label>
-                                    <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile" name="mobile">
+                                    <input type="tel" class="form-control" id="mobile" placeholder="Enter Mobile" name="mobile">
                                   </div>
                                 <div class="form-group">
                                   <label for="pwd">Password:</label>
                                   <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
                                 </div>
-                                <div class="form-group">
+                                <!--<div class="form-group">
                                     <label for="pwd">Password:</label>
                                     <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                                  </div>
+                                  </div>-->
                                   <div class="form-group">
                                     <label for="type">Type</label>
 

@@ -1,5 +1,7 @@
 @extends('teacher/layout')
-@section('page_title','Profile')
+@section('page_title','Add Notes')
+@section('student_name','Student')
+@section('addnotes_select','active')
 
 @section('container')
 

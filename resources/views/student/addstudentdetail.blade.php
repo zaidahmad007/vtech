@@ -127,8 +127,8 @@
 
           </div>
           <div class="form-group">
-            <label for="standard">Standard</label>
-            <input type="text" class="form-control" id="standard" placeholder="Enter standard" name="standard">
+            <label for="standard">Description</label>
+            <input type="text" class="form-control" id="standard" placeholder="Enter About Yourself" name="standard">
           </div>
         <div class="checkbox">
           <label><input type="checkbox" name="remember"> Remember me</label>

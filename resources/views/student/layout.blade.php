@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
@@ -264,36 +265,21 @@
               <span>Subjects</span>
               </a>
           </li>
-          <li >
-            <a class="@yield('timetable_select')" href="{{url('timetable')}}">
-              <i class="fa fa-cogs"></i>
-              <span>Time Table</span>
-              </a>
-          </li>
+        
           <li >
             <a class="@yield('attendance_select')" href="{{url('attendance')}}">
               <i class="fa fa-book"></i>
               <span>Attendance</span>
               </a>
           </li>
-          <li>
-            <a  class="@yield('st_select')" href="{{url('subject-teacher')}}">
-              <i class="fa fa-tasks"></i>
-              <span>Subject Teachers</span>
-              </a>
-          </li>
+        
           <li>
             <a  class="@yield('st_select')" href="{{url('motivationalquote')}}">
               <i class="fa fa-tasks"></i>
               <span>Motivational Quotes</span>
               </a>
           </li>
-          <li>
-            <a  class="@yield('marks_select')" href="{{url('marks')}}">
-              <i class="fa fa-th"></i>
-              <span>Marks</span>
-              </a>
-          </li>
+         
           <li >
             <a class="@yield('help_select')" href="{{url('help')}}">
               <i class="fa fa-envelope"></i>
@@ -432,6 +418,10 @@
       var to = $("#" + id).data("to");
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
+  </script>
+   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
   </script>
 </body>
 

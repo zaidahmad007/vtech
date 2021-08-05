@@ -12,6 +12,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\Motivationalquote;
 use App\Http\Controllers\SubjectNotesController;
 use App\Http\Controllers\TeacherProfile;
+use App\Http\Controllers\ChatController;
 use App\Models\StudentProfile;
 use App\Models\TeacherSubject;
 use GuzzleHttp\Middleware;
@@ -47,6 +48,10 @@ Route::middleware(['auth', 'detail','teacher'])->group(function () {
     Route::post('addteachersubject',[TeacherController::class,'addteachersubject']);
     Route::any('subnotes/{name}',[SubjectNotesController::class,'index'])->name('subnotes');
     Route::any('uploadnotes',[SubjectNotesController::class,'store'])->name('uploadnotes');
+
+    Route::get('/addStudy',[TimetableController::class,'addStudy'])->name('addStudy');
+    Route::post('/addEvent',[TimetableController::class,'addEvent'])->name('addEvent');
+    Route::get('/allEvent',[TimetableController::class,'allEvent'])->name('allEvent');
 });
 Route::middleware(['auth', 'detail','student'])->group(function () {
     Route::get('/studentdeshboard',[StudentController::class,'studentdeshboard']);
@@ -60,6 +65,10 @@ Route::middleware(['auth', 'detail','student'])->group(function () {
     Route::post('addstudentsubject',[SubjectController::class,'addstudentsubject']);
     Route::any('studentsubnotes/{name}',[SubjectController::class,'studentsubnotes'])->name('studentsubnotes');
     Route::get('motivationalquote',[Motivationalquote::class,'index']);
+    Route::get('chatroom',[ChatController::class,'index']);
+    Route::get('chat/{id}',[ChatController::class,'chat'])->name('chat');
+    Route::post('sendMessage',[ChatController::class,'sendMessage'])->name('sendMessage');
+    Route::get('getMessage',[ChatController::class,'getMessage'])->name('getMessages');
 });
 
 Route::middleware(['auth'])->group(function () {
